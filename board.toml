@@ -1,0 +1,53 @@
+schema_version = 2
+
+[board]
+name = "instantnoodlep"
+soc = "SM8250"
+soc_source = "sm8250"
+os_profile = "ipados-17.7.11-21H461"
+description = "OnePlus 8 Pro IN2020, 8 GiB, 1080x2376, UFS root"
+kit = "instantnoodlep"
+
+[components]
+include = ["ArmDTPlatform", "ArmCpu", "SoftwareAES", "XnuPrelink", "DarwinBoot"]
+
+[kernel]
+defconfig = "instantnoodlep_defconfig"
+config_fragments = ["arch:configs/common.config", "soc:configs/sm8250.config", "os:configs/ipados.config"]
+patch_series = ["arch:patches/xnu/series", "soc:patches/xnu/series", "os:patches/xnu/series", "device:patches/xnu/series"]
+
+[ipsw]
+url = "https://updates.cdn-apple.com/2025SpringFCS/fullrestores/122-77166/DCA6CFE8-90E9-4B92-880D-3DE171798E40/iPad_Pro_HFR_17.7.11_21H461_Restore.ipsw"
+product = "iPad7,1"
+version = "17.7.11"
+build = "21H461"
+device_class = "j120ap"
+chip_id = 0x8011
+board_id = 12
+fetch = ["KernelCache", "DeviceTree", "StaticTrustCache", "Cryptex1,SystemTrustCache"]
+
+[device_tree]
+source = "device:dts/board.dts"
+include_dirs = ["soc:dts"]
+
+[firmware]
+# Replace with this board's UEFI configuration and paths.
+config = "instantnoodlep"
+dsc = "Platforms/OnePlus/instantnoodlepPkg/instantnoodlep.dsc"
+fd = "Build/instantnoodlepPkg/{target}_GCC/FV/SILICIUM_UEFI.fd"
+packages = ["{uefi}", "{tree}/package", "{tree}/drivers/DarwinBoot", "{edk2}"]
+
+[firmware.defines]
+DEVICE_MODEL = "instantnoodlep"
+
+[payload]
+volume = "UNIXNU"
+size_mib = 60
+loader = "firmware"
+title = "UniXNU"
+kernel_args = ["-v", "serial=3"]
+
+[payload.adt]
+# Supply the board's identity seed through --unique-chip-id.
+chip_id = "356"
+unique_chip_id = "required"

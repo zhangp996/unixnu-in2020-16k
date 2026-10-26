@@ -1,0 +1,4 @@
+[[source]]
+name = "sm8250"
+kind = "soc"
+local = "../in2020-fresh/UniXNU-sm8250-common"
