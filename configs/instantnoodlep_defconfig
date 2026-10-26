@@ -7,3 +7,6 @@ CONFIG_XNU_ARMCPU=y
 CONFIG_XNU_CRYPTO_BOOTSTRAP="prelinked"
 # CONFIG_XNU_NATIVE_UFS is not set
 # CONFIG_XNU_NATIVE_ADRENO is not set
+
+# Minimal IN2020 bring-up: no offline mockfs fixture.
+# CONFIG_XNU_SOURCE_MOCKFS is not set
