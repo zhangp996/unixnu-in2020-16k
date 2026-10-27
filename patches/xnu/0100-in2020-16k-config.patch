@@ -192,6 +192,15 @@ new file mode 100644
 diff --git a/makedefs/MakeInc.def b/makedefs/MakeInc.def
 --- a/makedefs/MakeInc.def
 +++ b/makedefs/MakeInc.def
+@@ -29,7 +29,7 @@
+ else ifneq ($(findstring _host,$(RC_ProjectName)),)
+ SUPPORTED_ARM64_MACHINE_CONFIGS = NONE
+ else
+-SUPPORTED_ARM64_MACHINE_CONFIGS = BCM2837 T6000 T6020 T8101 T8103 T8112 VMAPPLE
++SUPPORTED_ARM64_MACHINE_CONFIGS = BCM2837 KEBAB T6000 T6020 T8101 T8103 T8112 VMAPPLE
+ 
+ endif
+ 
 @@ -63,6 +63,7 @@
  MACHINE_FLAGS_ARM64_T6020 = -DARM64_BOARD_CONFIG_T6020 			-mcpu=apple-a15
  MACHINE_FLAGS_ARM64_VMAPPLE = -DARM64_BOARD_CONFIG_VMAPPLE              -march=armv8.5a
@@ -212,7 +221,7 @@ diff --git a/osfmk/arm64/proc_reg.h b/osfmk/arm64/proc_reg.h
 +/* D-Cache. */
 +#define MMU_CLINE   6
 +
-+#elif defined (KEBAB)
++#elif defined (KEBAB) /* OnePlus 8 Pro / SM8250 */
 +
 +/* I-Cache. */
  #define MMU_I_CLINE 6
