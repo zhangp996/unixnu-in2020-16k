@@ -1,0 +1,12 @@
+--- a/config/MASTER.arm64.bcm2837
++++ b/config/MASTER.arm64.bcm2837
+@@ -79,6 +79,9 @@
+ 
+ machine		"arm64"						# <arm64>
+ 
++options		NOS_ARM_ASM
++options		NOS_ARM_PMAP
++
+ makeoptions	OSFMK_MACHINE = "arm64"				# <mach>
+ 
+ options		COUNT_SYSCALLS		# count bsd system calls 	# <countcalls>
