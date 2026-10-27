@@ -1,0 +1,13 @@
+diff --git a/osfmk/prng/prng_random.c b/osfmk/prng/prng_random.c
+--- a/osfmk/prng/prng_random.c
++++ b/osfmk/prng/prng_random.c
+@@ -421,2 +421,9 @@
+ 	return rbits;
+ }
++
++/* 16K source build: provide the kext entry until the source corecrypto archive is linked. */
++int
++corecrypto_kext_start(void)
++{
++	return 0;
++}
