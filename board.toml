@@ -13,6 +13,7 @@ include = ["ArmDTPlatform", "ArmCpu", "SoftwareAES", "XnuPrelink", "DarwinBoot"]
 
 [kernel]
 defconfig = "instantnoodlep_defconfig"
+script = "scripts/build-xnu-16k-in2020.sh"
 config_fragments = ["arch:configs/common.config", "soc:configs/sm8250.config", "os:configs/ipados.config"]
 patch_series = ["arch:patches/xnu/series", "soc:patches/xnu/series", "os:patches/xnu/series", "device:patches/xnu/series"]
 
@@ -41,18 +42,21 @@ packages = ["{uefi}", "{tree}/package", "{tree}/drivers/DarwinBoot", "{edk2}"]
 DEVICE_MODEL = "instantnoodlep"
 
 [payload]
+panic_screen = true
 volume = "UNIXNU"
 size_mib = 60
 loader = "firmware"
 title = "UniXNU"
-kernel_args = ["-v", "serial=3", "debug=0x14e", "boot-progress=2"]
+kernel_args = ["-v", "-enable_kprintf_spam", "startup_debug=1", "serial=3", "debug=0x14f", "cpus=1"]
 
 [payload.adt]
 # Supply the board's identity seed through --unique-chip-id.
 chip_id = "356"
 unique_chip_id = "00000000fa8620b3"
+owned_memory_size = "0xC0000000"
 
 [kernel.prelink]
+kernel = "build/xnu/ios-obj/DEVELOPMENT_ARM64_KEBAB/mach.development.kebab.unstripped.noctf"
 roots = [
   "com.apple.AppleFSCompression.AppleFSCompressionTypeZlib",
   "com.apple.driver.AppleARMPlatform",
