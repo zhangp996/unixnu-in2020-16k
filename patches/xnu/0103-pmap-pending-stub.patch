@@ -1,7 +1,7 @@
 diff --git a/osfmk/arm/pmap/pmap.c b/osfmk/arm/pmap/pmap.c
 --- a/osfmk/arm/pmap/pmap.c
 +++ b/osfmk/arm/pmap/pmap.c
-@@ -14944,2 +14944,9 @@
+@@ -14944,2 +14944,16 @@
  
  #endif /* DEVELOPMENT || DEBUG */
 +
@@ -10,4 +10,11 @@ diff --git a/osfmk/arm/pmap/pmap.c b/osfmk/arm/pmap/pmap.c
 +pmap_pending_preemption(void)
 +{
 +	return false;
++}
++
++/* 16K source build corecrypto kext entry stub. */
++int
++corecrypto_kext_start(void)
++{
++	return 0;
 +}
