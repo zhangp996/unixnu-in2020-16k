@@ -1,10 +1,9 @@
 diff --git a/osfmk/arm/pmap/pmap.c b/osfmk/arm/pmap/pmap.c
 --- a/osfmk/arm/pmap/pmap.c
 +++ b/osfmk/arm/pmap/pmap.c
-@@ -83,6 +83,14 @@
- #include <arm/trap_internal.h>
+@@ -14944,2 +14944,9 @@
  
- #include <arm64/proc_reg.h>
+ #endif /* DEVELOPMENT || DEBUG */
 +
 +/* Open-source pmap link stub for non-Apple builds. */
 +bool
@@ -12,7 +11,3 @@ diff --git a/osfmk/arm/pmap/pmap.c b/osfmk/arm/pmap/pmap.c
 +{
 +	return false;
 +}
-+
- #include <pexpert/arm64/boot.h>
- #include <arm64/ppl/sart.h>
- #include <arm64/ppl/uat.h>
